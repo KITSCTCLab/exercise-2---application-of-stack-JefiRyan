@@ -24,7 +24,7 @@ class Evaluate:
     Returns:
       True if it is empty, else returns False.
     """
-      # Write your code here
+    return self.top == self.size_of_stack-1
 
 
   def pop(self):
@@ -33,7 +33,9 @@ class Evaluate:
     Returns:
       The data which is popped out if the stack is not empty.
     """
-    # Write your code here
+    data = self.stack.pop()
+    self.top -= 1
+    return data
 
 
   def push(self, operand):
@@ -42,7 +44,8 @@ class Evaluate:
     Arguments:
       operand: The operand to be pushed.
     """
-    # Write your code here
+    self.stack.append(operand)
+    self.top += 1
 
 
   def validate_postfix_expression(self, expression):
@@ -53,18 +56,91 @@ class Evaluate:
     Returns:
       True if the expression is valid, else returns False.
     """
-    # Write your code here
+    data_stack = []
+    top = -1
+    status = False
+    for i in expression:
+      operands = []
+      operator = ""
+      try:
+        num = int(i)
+        status = True
+      except:
+        status = False
+      if status:
+        data_stack.append(int(i))
+        top += 1
+      elif i in ['+',"-","*","/","%"]:
+        operands = []
+        if len(data_stack) >=2:
+          for j in range(2):
+            data = data_stack.pop()
+            operands.append(data)
+          b ,a = operands
+          if i == "+":
+            data_stack.append(a+b)
+          elif i == "-":
+            data_stack.append(a-b)
+          elif i == "/":
+            data_stack.append(a/b)
+          elif i == "*":
+            data_stack.append(a*b)
+          elif i == "^":
+            data_stack.append(a^b)
+
+    return len(data_stack) == 1
 
 
   def evaluate_postfix_expression(self, expression):
     """
     Evaluate the postfix expression
     Arguments:
-      expression: A String which represents the the expression to be evaluated
+      expression: A String which represents the expression to be evaluated
     Returns:
       The result of evaluated postfix expression.
     """
-    # Write your code here
+    associativity = {"(":'very_high',')':3,'^':2,'/':1,'*':1,'+':0,'-':0}
+    data_stack = []
+    top = -1
+    status = False
+    for i in expression:
+      operands = []
+      operator = ""
+      try:
+        num = int(i)
+        status = True
+      except:
+        status = False
+      if status:
+        data_stack.append(int(i))
+        top += 1
+      elif i in ['+',"-","*","/","%"]:
+        operands = []
+        if len(data_stack) >=2:
+          # print(">= 2")
+          for j in range(2):
+            data = data_stack.pop()
+            operands.append(data)
+          # print(operands)
+          b ,a = operands
+          # print(i)
+          if i == "+":
+            # print(a+b)
+            data_stack.append(a+b)
+          elif i == "-":
+            data_stack.append(a-b)
+          elif i == "/":
+            data_stack.append(a/b)
+          elif i == "*":
+            data_stack.append(a*b)
+          elif i == "^":
+            data_stack.append(a^b)
+      # print(data_stack)
+
+    # print(data_stack)
+    return data_stack[0]
+    # return data_stack[0]
+
 
 
 # Do not change the following code
