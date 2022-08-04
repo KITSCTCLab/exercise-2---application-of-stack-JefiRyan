@@ -106,9 +106,9 @@ class Evaluate:
     # print(expression)
     for i in expression:
       # print('i: '+i)
-      if i == "-":
+      # if i == "-":
         # print('- found!!!')
-      if i in ['+','*','/','^','-']:
+      # if i in ['+','*','/','^','-']:
         # print('yeah an operator')
       operands = []
       operator = ""
@@ -121,7 +121,7 @@ class Evaluate:
         data_stack.append(int(i))
         top += 1
       elif i in ['+',"-","*","/","^"]:
-        if associativity[i] > data_stack[-1]:
+        # if associativity[i] > data_stack[-1]:
           # print('has high '+str(data_stack[-1]))
         operands = []
         # print('got '+i)
@@ -145,7 +145,7 @@ class Evaluate:
           elif i == "^":
             # print(f"{a} ^ {b} =",a**b)
             data_stack.append(a**b)
-      else:
+      # else:
         # print("No match")
       # print(data_stack)
 
