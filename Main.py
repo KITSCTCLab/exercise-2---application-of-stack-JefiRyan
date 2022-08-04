@@ -81,18 +81,20 @@ class Evaluate:
         self.push(int(i))
       elif i in ["+","-","*","/","^"]:
         if i == "+":
-          result = self.stack[-2] + self.stack[-1]
+          b, a = self.pop(),self.pop()
+          self.push(a+b)
         elif i == "-":
-          result = self.stack[-2] - self.stack[-1]
+          b, a = self.pop(),self.pop()
+          self.push(a-b)
         elif i == "*":
-          result = self.stack[-2] * self.stack[-1]
+          b, a = self.pop(),self.pop()
+          self.push(a*b)
         elif i == "/":
-          result = self.stack[-2] // self.stack[-1]
+          b, a = self.pop(),self.pop()
+          self.push(a//b)
         elif i == "^":
-          result = self.stack[-2] ** self.stack[-1]
-        self.pop()
-        self.pop()
-        self.push(result)
+          b, a = self.pop(),self.pop()
+          self.push(a**b)
 
     return self.pop()
 
