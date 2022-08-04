@@ -70,7 +70,7 @@ class Evaluate:
       if status:
         data_stack.append(int(i))
         top += 1
-      elif i in ['+',"-","*","/","%"]:
+      elif i in ['+',"-","*","/","^"]:
         operands = []
         if len(data_stack) >=2:
           for j in range(2):
@@ -89,7 +89,7 @@ class Evaluate:
             data_stack.append(a^b)
 
     return len(data_stack) == 1
-
+    #   return True
 
   def evaluate_postfix_expression(self, expression):
     """
@@ -103,7 +103,13 @@ class Evaluate:
     data_stack = []
     top = -1
     status = False
+    # print(expression)
     for i in expression:
+      # print('i: '+i)
+      if i == "-":
+        # print('- found!!!')
+      if i in ['+','*','/','^','-']:
+        # print('yeah an operator')
       operands = []
       operator = ""
       try:
@@ -114,8 +120,11 @@ class Evaluate:
       if status:
         data_stack.append(int(i))
         top += 1
-      elif i in ['+',"-","*","/","%"]:
+      elif i in ['+',"-","*","/","^"]:
+        if associativity[i] > data_stack[-1]:
+          # print('has high '+str(data_stack[-1]))
         operands = []
+        # print('got '+i)
         if len(data_stack) >=2:
           # print(">= 2")
           for j in range(2):
@@ -134,7 +143,10 @@ class Evaluate:
           elif i == "*":
             data_stack.append(a*b)
           elif i == "^":
-            data_stack.append(a^b)
+            # print(f"{a} ^ {b} =",a**b)
+            data_stack.append(a**b)
+      else:
+        # print("No match")
       # print(data_stack)
 
     # print(data_stack)
