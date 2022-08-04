@@ -76,26 +76,36 @@ class Evaluate:
     Returns:
       The result of evaluated postfix expression.
     """
-    self.stack = []
     for i in expression:
       if i.isdigit():
         self.push(int(i))
       elif i in ["+","-","*","/","^"]:
         if i == "+":
-          b, a = self.pop(),self.pop()
+          b, a = self.stack[-1],self.stack[-2]
+          self.pop()
+          self.pop()
           self.push(a+b)
         elif i == "-":
-          b, a = self.pop(),self.pop()
+          b, a = self.stack[-1],self.stack[-2]
+          self.pop()
+          self.pop()
           self.push(a-b)
         elif i == "*":
-          b, a = self.pop(),self.pop()
+          b, a = self.stack[-1],self.stack[-2]
+          self.pop()
+          self.pop()
           self.push(a*b)
         elif i == "/":
-          b, a = self.pop(),self.pop()
+          b, a = self.stack[-1],self.stack[-2]
+          self.pop()
+          self.pop()
           self.push(a/b)
         elif i == "^":
-          b, a = self.pop(),self.pop()
+          b, a = self.stack[-1],self.stack[-2]
+          self.pop()
+          self.pop()
           self.push(a**b)
+
 
     return self.pop()
 
