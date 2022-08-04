@@ -82,30 +82,22 @@ class Evaluate:
       elif i in ["+","-","*","/","^"]:
         if i == "+":
           b, a = self.stack[-1],self.stack[-2]
-          self.pop()
-          self.pop()
-          self.push(a+b)
+          result = a+b
         elif i == "-":
           b, a = self.stack[-1],self.stack[-2]
-          self.pop()
-          self.pop()
-          self.push(a-b)
+          result = a-b
         elif i == "*":
           b, a = self.stack[-1],self.stack[-2]
-          self.pop()
-          self.pop()
-          self.push(a*b)
+          result = a*b
         elif i == "/":
           b, a = self.stack[-1],self.stack[-2]
-          self.pop()
-          self.pop()
-          self.push(a/b)
+          result = a/b
         elif i == "^":
           b, a = self.stack[-1],self.stack[-2]
-          self.pop()
-          self.pop()
-          self.push(a**b)
-
+          result = a ** b
+        self.pop()
+        self.pop()
+        self.push(result)
 
     return self.pop()
 
