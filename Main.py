@@ -87,7 +87,7 @@ class Evaluate:
         elif i == "*":
           result = self.stack[-2] * self.stack[-1]
         elif i == "/":
-          result = self.stack[-2] / self.stack[-1]
+          result = self.stack[-2] // self.stack[-1]
         elif i == "^":
           result = self.stack[-2] ** self.stack[-1]
         self.pop()
