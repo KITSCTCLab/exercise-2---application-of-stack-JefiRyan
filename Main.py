@@ -88,7 +88,7 @@ class Evaluate:
           elif i == "^":
             data_stack.append(a^b)
 
-    return len(data_stack) == 1
+    return len(data_stack) == 1 and len(expression) != 1
     #   return True
 
   def evaluate_postfix_expression(self, expression):
@@ -150,7 +150,7 @@ class Evaluate:
       # print(data_stack)
 
     # print(data_stack)
-    return data_stack[0]
+    return data_stack[-1]
     # return data_stack[0]
 
 
